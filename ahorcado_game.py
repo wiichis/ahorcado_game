@@ -8,7 +8,7 @@ def read():
             words.append(line)
 
     global random_word
-    random_word = words[random.randint(0,len(words))]
+    random_word = words[random.randint(0,len(words)-1)]
     print(random_word)
     return random_word
     
@@ -29,11 +29,15 @@ def compare():
 
     for character in random_word_characters:
         if input_characters() in random_word_characters:
-            position_character = random_word_characters.index(character_user)
-            rigth_word_characters[position_character] = character_user
+            #position_characters = random_word_characters.index(character_user)
+            position_characters = list(enumerate(random_word_characters, 0))
+            guess_characters = [(x) for x,i in position_characters if i == character_user]
+            for x in guess_characters:
+                rigth_word_characters[x] = character_user
+            print(position_characters)
+            print(guess_characters)
             print(rigth_word_characters)
     print(random_word_characters)
-
 
 
 def run():
