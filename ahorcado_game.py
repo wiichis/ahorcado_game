@@ -14,10 +14,9 @@ def read():
     random_word = words[random.randint(0,len(words)-1)]
     traslate_vocals = random_word.maketrans('áéíóú\n', 'aeiou ')
     random_word_uper = random_word.translate(traslate_vocals).upper().strip()
-    print(random_word_uper)
-    print(len(random_word_uper))
-    return random_word
-    
+    print("-"*len(random_word_uper))
+    print("Tienes 7 intentos, usalos bien")
+
 
 #Solicitando letras al jugador
 def input_characters():
@@ -37,9 +36,11 @@ def words_to_play():
     
 
 #Comparación
+lives_value = 7
 
 def compare():
     global print_rigth_word_characters
+    global lives_value
     if input_characters() in random_word_characters:
         position_characters = list(enumerate(random_word_characters, 0))
         guess_characters = [(x) for x,i in position_characters if i == character_user]
@@ -54,19 +55,23 @@ def compare():
     else:
         os.system("clear")
         print_rigth_word_characters = reduce(lambda a,b: a + b, rigth_word_characters)
+        lives_value -= 1
         print(print_rigth_word_characters)
     
 
 def chances():
-    lives_value = 10
+    global lives_value
     words_to_play()
-    for _ in range(lives_value):
+    while lives_value != 0:
+        compare()
         print("¡Adivina la Palabra!")
         print('💚 '*lives_value)
-        lives_value -= 1
-        compare()
+
+        if lives_value == 0:
+            print("=============💀 ¡TE AHORCARON! 🤪=============")
+            print(f'La palabra era: {random_word_uper}')        
         if random_word_uper == print_rigth_word_characters:
-            print("GANASTE")
+            print("=============😎 ¡GANASTE! 🧐=============")
             break
 
 def run():
