@@ -21,12 +21,11 @@ def read():
 #Solicitando letras al jugador
 def input_characters():
     global character_user
-    character_user = input("Ingresa una letra: ").upper()
+    character_user = input("Ingresa una letra: ").upper()    
     return character_user
 
 random_word_characters = []
 rigth_word_characters = []
-#print_rigth_word_characters = []
 
 
 def words_to_play():
@@ -64,6 +63,11 @@ def chances():
     words_to_play()
     while lives_value != 0:
         compare()
+        try:
+            if len(character_user) > 1:
+                raise Exception ('Doble Character')
+        except:
+            print("Ingresa solo 1 letra")        
         print("¡Adivina la Palabra!")
         print('💚 '*lives_value)
 
