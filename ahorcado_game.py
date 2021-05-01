@@ -1,4 +1,6 @@
 import random
+import os
+from functools import reduce
 
 #Leyendo el archivo
 def read():
@@ -19,30 +21,46 @@ def input_characters():
     character_user = input("Ingresa una letra: ")
     return character_user
 
-#Comparación
+
+def lines()
+
+
 random_word_characters = []
 rigth_word_characters = []
+
+
+#Comparación
 def compare():
     for character in random_word:
         random_word_characters.append(character)
         rigth_word_characters.append("-")
+    rigth_word_characters.pop()
 
-    for character in random_word_characters:
+    # 7 Oportunidades para adivinar
+    for character in range(7):
         if input_characters() in random_word_characters:
-            #position_characters = random_word_characters.index(character_user)
             position_characters = list(enumerate(random_word_characters, 0))
             guess_characters = [(x) for x,i in position_characters if i == character_user]
+            
+            #Llenando las letras correctas
             for x in guess_characters:
                 rigth_word_characters[x] = character_user
-            print(position_characters)
-            print(guess_characters)
-            print(rigth_word_characters)
+                print_rigth_word_characters = reduce(lambda a,b: a + b, rigth_word_characters)
+                os.system("clear")
+            print(print_rigth_word_characters)
     print(random_word_characters)
+
+def chances():
+    for chance in range(7):
+        os.system("clear")
+        print("¡Adivina la Palabra!")
 
 
 def run():
+    chances()
     read()
     compare()
 
 if __name__=='__main__':
+
     run()
