@@ -68,7 +68,7 @@ def chances():
                 raise Exception ('Doble Character')
         except:
             print("Ingresa solo 1 letra")        
-        print("¡Adivina la Palabra!")
+            print("¡Adivina la Palabra!")
         print('💚 '*lives_value)
 
         if lives_value == 0:
